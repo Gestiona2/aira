@@ -20,9 +20,10 @@
     ]
   },
   "manifiesto": {
-    "etiqueta": "El método Aira",
-    "titular": "No entrenamos cuerpos. Habitamos personas: fuerza sin prisa, técnica sin rigidez, calma sin pausa.",
-    "firma": "aira — the pilates house"
+    "etiqueta": "Storytelling Aira",
+    "titular": "Redefinimos el bienestar, fusionamos serenidad y movimiento.",
+    "texto": "Nuestro espacio, un refugio de calma que conecta mente, cuerpo y espíritu. En aira cultivamos la calma mental, potenciamos el equilibrio corporal y celebramos la conciencia plena.",
+    "firma": "Serenidad · Conexión mente cuerpo · Bienestar"
   },
   "servicios": {
     "etiqueta": "Experiencias",
