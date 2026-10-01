@@ -1,8 +1,21 @@
 {
-  "nombre": "aira", "razonSocial": "Aira Studio Pilates", "nit": "", "descripcion": "Aira Studio Pilates: movimiento consciente, fuerza y bienestar en un espacio diseñado para volver a ti.",
-  "whatsapp": "573000000000", "correo": "", "correoLegal": "", "direccion": "Dirección por confirmar", "horario": "Horarios por confirmar", "claveTema": "aira-tema",
-  "menu": [ { "id": "inicio", "texto": "Inicio", "href": "/" }, { "id": "servicios", "texto": "Experiencias", "href": "/#servicios" }, { "id": "nosotros", "texto": "El estudio", "href": "/#nosotros" }, { "id": "contacto", "texto": "Visítanos", "href": "/#contacto" } ],
-  "ctaPrincipal": { "texto": "Agenda tu clase", "href": "https://wa.me/573000000000?text=Hola%20Aira,%20quiero%20agendar%20mi%20primera%20clase" },
-  "redes": [ { "nombre": "Instagram", "icono": "instagram", "href": "" } ],
-  "legales": [ { "texto": "Política de privacidad", "href": "/politica-privacidad" } ]
+  "_comentario": "Datos globales de Aira Studio Pilates. El WhatsApp es provisional hasta confirmación.",
+  "nombre": "aira",
+  "razonSocial": "Aira Studio Pilates",
+  "descripcion": "Aira Studio Pilates — The Pilates House. Movimiento consciente, fuerza y calma en un espacio diseñado para volver a ti.",
+  "whatsapp": "573000000000",
+  "direccion": "Dirección por confirmar",
+  "horario": "Horarios por confirmar",
+  "instagram": "",
+  "anuncio": "Primera visita con acompañamiento personal — escríbenos por WhatsApp",
+  "menu": [
+    { "id": "experiencias", "texto": "Experiencias", "href": "#experiencias" },
+    { "id": "estudio", "texto": "Estudio", "href": "#estudio" },
+    { "id": "espacios", "texto": "Espacios", "href": "#espacios" },
+    { "id": "faq", "texto": "Preguntas", "href": "#faq" }
+  ],
+  "ctaPrincipal": {
+    "texto": "Agenda tu clase",
+    "href": "https://wa.me/573000000000?text=Hola%20Aira%2C%20quiero%20agendar%20mi%20primera%20clase"
+  }
 }

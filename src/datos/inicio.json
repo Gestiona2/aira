@@ -1,10 +1,125 @@
 {
-  "meta": { "titulo": "aira · The Pilates House", "descripcion": "Pilates reformer y movimiento consciente en Aira Studio Pilates." },
-  "portada": { "encabezado": "The Pilates House", "titulo": "Vuelve a tu centro.", "tituloAcento": "Muévete con intención.", "texto": "Un espacio para habitar tu cuerpo con más presencia, fuerza y calma. Clases de Pilates reformer diseñadas para acompañarte.", "botones": [ { "texto": "Agenda tu primera clase", "href": "https://wa.me/573000000000?text=Hola%20Aira,%20quiero%20agendar%20mi%20primera%20clase", "estilo": "btn-accent" }, { "texto": "Conoce Aira", "href": "#nosotros", "estilo": "btn-ghost" } ], "imagen": "/img/estudio-reformer.jpg", "imagenAlt": "Sala luminosa de Aira con reformers y accesorios de Pilates" },
-  "servicios": { "encabezado": "Experiencias Aira", "titulo": "Tu práctica, a tu ritmo.", "texto": "Elige la forma de moverte que mejor acompaña tu momento.", "items": [ { "titulo": "Pilates Reformer", "texto": "Entrenamiento consciente en máquinas, con atención a la técnica y al movimiento de todo tu cuerpo.", "icono": "move-3d", "imagen": "/img/estudio-reformer.jpg" }, { "titulo": "Clases personalizadas", "texto": "Una práctica que se adapta a tus objetivos, experiencia y necesidades. Escríbenos para encontrar tu formato.", "icono": "sparkles", "imagen": "/img/estudio-detalle.jpg" }, { "titulo": "Experiencia Aira", "texto": "Más que una clase: un espacio cuidado, una comunidad y pequeños rituales para sentirte bien.", "icono": "heart", "imagen": "/img/estudio-luz.jpg" } ] },
-  "nosotros": { "encabezado": "El estudio", "titulo": "Un lugar para volver a ti.", "texto": "Aira nace para hacer del movimiento una experiencia más amable, estética y presente. Aquí cada detalle está pensado para que entrenes, respires y salgas sintiéndote más tú.", "imagen": "/img/estudio-luz.jpg", "imagenAlt": "Interior de Aira Studio Pilates con luz cálida y equipamiento blanco" },
-  "cifras": { "items": [ { "numero": 1, "sufijo": "", "texto": "espacio para tu bienestar", "icono": "sun" }, { "numero": 3, "sufijo": "", "texto": "formas de vivir Aira", "icono": "layers" }, { "numero": 360, "sufijo": "°", "texto": "atención a tu movimiento", "icono": "refresh-cw" }, { "numero": 100, "sufijo": "%", "texto": "presencia en cada clase", "icono": "focus" } ] },
-  "testimonios": { "encabezado": "Aira mood", "titulo": "La sensación después de moverte.", "items": [] },
-  "faq": { "encabezado": "Antes de venir", "titulo": "Lo que quieres saber.", "items": [ { "pregunta": "¿Necesito experiencia previa?", "respuesta": "No. Te guiamos desde el primer día y adaptamos la práctica a tu nivel." }, { "pregunta": "¿Cómo agendo una clase?", "respuesta": "Escríbenos por WhatsApp. Te contamos los horarios disponibles y encontramos la mejor opción para ti." }, { "pregunta": "¿Qué debo llevar?", "respuesta": "Ropa cómoda y ajustada al cuerpo, medias antideslizantes y ganas de regalarte un momento." }, { "pregunta": "¿Dónde está Aira?", "respuesta": "Escríbenos para recibir la dirección exacta y las indicaciones para llegar." } ] },
-  "contacto": { "encabezado": "Nos vemos en Aira", "titulo": "Tu cuerpo te está esperando.", "texto": "Cuéntanos qué buscas y te ayudamos a dar el primer paso. Respondemos por WhatsApp." }
+  "meta": {
+    "titulo": "aira · The Pilates House — Pilates Reformer",
+    "descripcion": "Aira Studio Pilates: movimiento consciente en reformer, grupos pequeños y un espacio diseñado para volver a ti. Agenda por WhatsApp."
+  },
+  "portada": {
+    "etiqueta": "The Pilates House · One breath at a time",
+    "tituloLinea1": "Vuelve a tu",
+    "tituloCursiva": "centro",
+    "tituloLinea2": "muévete con intención",
+    "texto": "Pilates reformer, grupos pequeños y acompañamiento real. Un espacio cálido donde entrenar también se siente como un ritual.",
+    "imagen": "/img/estudio-reformer.jpg",
+    "imagenAlt": "Sala de reformers blancos de Aira Studio Pilates con luz cálida",
+    "selloTitulo": "Grupos pequeños",
+    "selloTexto": "Atención personal en cada clase",
+    "stats": [
+      { "valor": "Reformer", "texto": "Método base" },
+      { "valor": "Small groups", "texto": "Formato íntimo" },
+      { "valor": "1:1", "texto": "Acompañamiento" }
+    ]
+  },
+  "manifiesto": {
+    "etiqueta": "El método Aira",
+    "titular": "No entrenamos cuerpos. Habitamos personas: fuerza sin prisa, técnica sin rigidez, calma sin pausa.",
+    "firma": "aira — the pilates house"
+  },
+  "servicios": {
+    "etiqueta": "Experiencias",
+    "titulo": "Elige cómo empezar",
+    "texto": "Tres formas de vivir Aira. Todas se agendan por WhatsApp, sin carrito y sin fricción.",
+    "items": [
+      {
+        "numero": "01",
+        "titulo": "Pilates Reformer",
+        "texto": "El corazón de Aira. Trabajo en máquina con técnica precisa para fuerza, postura y control.",
+        "imagen": "/img/estudio-reformer.jpg",
+        "imagenAlt": "Sala de reformers blancos de Aira con luz cálida",
+        "incluye": ["Grupos pequeños", "Técnica guiada", "Todos los niveles"],
+        "whatsappMsg": "Hola Aira, quiero información sobre Pilates Reformer"
+      },
+      {
+        "numero": "02",
+        "titulo": "Clase personalizada",
+        "texto": "Una práctica diseñada para tu cuerpo, tu ritmo y tus objetivos. Ideal para empezar o volver.",
+        "imagen": "/img/practica-calma.jpg",
+        "imagenAlt": "Práctica de movilidad y respiración en ambiente sereno",
+        "incluye": ["Diagnóstico inicial", "Plan a tu medida", "Horario flexible"],
+        "whatsappMsg": "Hola Aira, me interesa una clase personalizada"
+      },
+      {
+        "numero": "03",
+        "titulo": "Ritual Aira",
+        "texto": "Más que una clase: respiración, movilidad y cierre consciente. Sal distinta a como entraste.",
+        "imagen": "/img/estudio-detalle.jpg",
+        "imagenAlt": "Detalle del espacio Aira con accesorios de Pilates",
+        "incluye": ["Sesión completa", "Cierre consciente", "Comunidad Aira"],
+        "whatsappMsg": "Hola Aira, quiero vivir el Ritual Aira"
+      }
+    ]
+  },
+  "estudio": {
+    "etiqueta": "El estudio",
+    "titulo": "Diseñado para respirar",
+    "texto": "Cada rincón de Aira fue pensado para bajar el ruido: luz cálida, materiales nobles y equipos impecables. Aquí el lujo es la calma.",
+    "imagen": "/img/estudio-luz.jpg",
+    "imagenAlt": "Interior luminoso del estudio Aira con equipamiento blanco",
+    "rituales": [
+      { "titulo": "Luz y silencio", "texto": "Ambiente controlado para concentrarte en tu cuerpo." },
+      { "titulo": "Grupos íntimos", "texto": "Pocas personas por clase, mirada atenta del coach." },
+      { "titulo": "Detalle Aira", "texto": "Toallas, accesorios y acabados que se sienten premium." }
+    ]
+  },
+  "espacios": {
+    "etiqueta": "Espacios",
+    "titulo": "Un vistazo a la casa",
+    "texto": "Fotografía real del estudio. Formatos de imagen pensados para web y retina.",
+    "items": [
+      {
+        "imagen": "/img/estudio-reformer.jpg",
+        "alt": "Zona de reformers del estudio Aira",
+        "titulo": "Sala Reformer",
+        "medida": "1600 × 2133 · retrato"
+      },
+      {
+        "imagen": "/img/estudio-luz.jpg",
+        "alt": "Pasillo luminoso del estudio Aira",
+        "titulo": "Sala de luz",
+        "medida": "1400 × 1866 · retrato"
+      },
+      {
+        "imagen": "/img/estudio-detalle.jpg",
+        "alt": "Detalle de accesorios y acabados Aira",
+        "titulo": "Detalle & accesorios",
+        "medida": "1200 × 1600 · retrato"
+      }
+    ]
+  },
+  "pasos": {
+    "etiqueta": "Cómo empezar",
+    "titulo": "Tan simple como respirar",
+    "items": [
+      { "numero": "01", "titulo": "Escríbenos", "texto": "Cuéntanos tu nivel y tu objetivo por WhatsApp." },
+      { "numero": "02", "titulo": "Elige tu ritual", "texto": "Te recomendamos la experiencia ideal para ti." },
+      { "numero": "03", "titulo": "Ven a moverte", "texto": "Llega 10 minutos antes. Nosotros nos encargamos del resto." }
+    ]
+  },
+  "faq": {
+    "etiqueta": "Preguntas",
+    "titulo": "Antes de tu primera visita",
+    "items": [
+      { "pregunta": "¿Necesito experiencia previa?", "respuesta": "No. La mayoría empieza desde cero. Adaptamos la intensidad y te guiamos en la técnica desde el primer minuto." },
+      { "pregunta": "¿Cómo agendo mi clase?", "respuesta": "Todo es por WhatsApp: nos escribes, elegimos horario y confirmas. Sin apps ni registros complicados." },
+      { "pregunta": "¿Qué debo llevar?", "respuesta": "Ropa cómoda ajustada al cuerpo y medias antideslizantes. El resto —equipos, accesorios y ambiente— lo pone Aira." },
+      { "pregunta": "¿Cuántas personas hay por clase?", "respuesta": "Trabajamos en grupos pequeños para cuidar tu técnica. Escríbenos y te contamos la disponibilidad de esta semana." },
+      { "pregunta": "¿Dónde están ubicados?", "respuesta": "Escríbenos por WhatsApp y te compartimos la dirección exacta con indicaciones para llegar." }
+    ]
+  },
+  "contacto": {
+    "etiqueta": "Agenda",
+    "titulo": "Tu primera clase empieza con un mensaje",
+    "texto": "Respuesta humana, sin bots. Cuéntanos qué buscas y te proponemos el mejor punto de partida.",
+    "whatsappMsg": "Hola Aira, quiero agendar mi primera clase",
+    "nota": "Atendemos por WhatsApp en horario del estudio"
+  }
 }

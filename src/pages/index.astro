@@ -1,121 +1,187 @@
 ---
 /**
- * Página de inicio.
- *
- * REGLA: aquí NO se escribe texto. Todo sale de src/datos/inicio.json.
- * Si hay que cambiar una palabra, se cambia en el JSON — nunca aquí.
- * Esta página define CÓMO se ve; el JSON define QUÉ dice.
+ * Aira Studio Pilates — página informativa luxury.
+ * REGLA: sin texto escrito aquí; todo sale de src/datos/inicio.json y sitio.json.
  */
 import Layout from "../layouts/Layout.astro";
 import datos from "../datos/inicio.json";
+import sitio from "../datos/sitio.json";
 
-const { portada, servicios, nosotros, cifras, testimonios, faq, contacto, meta } = datos;
+const { portada, manifiesto, servicios, estudio, espacios, pasos, faq, contacto, meta } = datos;
+const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURIComponent(msg)}`;
 ---
 
 <Layout titulo={meta.titulo} descripcion={meta.descripcion} activa="inicio">
-  {/* ==================== PORTADA ==================== */}
-  <header class="portada">
-    <div class="container portada-grid">
-      <div>
-        <span class="eyebrow reveal"><span class="dot"></span> {portada.encabezado}</span>
-        <h1 class="reveal">
-          {portada.titulo}<br />
-          <span class="marca-text">{portada.tituloAcento}</span>
-        </h1>
-        <p class="lead reveal">{portada.texto}</p>
-        <div class="portada-botones reveal">
-          {portada.botones.map((b) => (
-            <a href={b.href} class={`btn ${b.estilo}`}>{b.texto}</a>
-          ))}
-        </div>
+  {/* ============ HERO ============ */}
+  <header class="hero">
+    <div class="hero-bg">
+      <img src={portada.imagen} alt={portada.imagenAlt} loading="eager" fetchpriority="high" />
+    </div>
+    <aside class="hero-sello rv">
+      <strong>{portada.selloTitulo}</strong>
+      <p>{portada.selloTexto}</p>
+    </aside>
+    <span class="hero-scroll" aria-hidden="true"></span>
+    <div class="container hero-inner">
+      <span class="hero-etiqueta rv">{portada.etiqueta}</span>
+      <h1 class="rv">
+        {portada.tituloLinea1} <em>{portada.tituloCursiva}</em><br />
+        {portada.tituloLinea2}
+      </h1>
+      <p class="hero-sub rv">{portada.texto}</p>
+      <div class="hero-ctas rv">
+        <a class="btn-pill btn-ivory" href={wa(contacto.whatsappMsg)} target="_blank" rel="noopener">
+          Agenda tu primera clase
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="btn-pill btn-line-ivory" href="#experiencias">Conocer experiencias</a>
       </div>
-      <div class="portada-visual reveal" data-parallax="0.08">
-        <img src={portada.imagen} alt={portada.imagenAlt} loading="eager" />
+      <div class="hero-foot rv" data-stagger>
+        {portada.stats.map((s) => (
+          <div class="hero-stat">
+            <strong>{s.valor}</strong>
+            <span>{s.texto}</span>
+          </div>
+        ))}
       </div>
     </div>
   </header>
 
-  {/* ==================== SERVICIOS ==================== */}
-  <section class="pad" id="servicios">
-    <div class="container">
-      <span class="eyebrow reveal"><span class="dot"></span> {servicios.encabezado}</span>
-      <h2 class="section-title reveal">{servicios.titulo}</h2>
-      <p class="lead reveal">{servicios.texto}</p>
+  {/* ============ MARQUEE ============ */}
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {Array.from({ length: 2 }).map(() => (
+        <>
+          <span><i>✦</i>Reformer</span><span><i>✦</i>Breath</span><span><i>✦</i>Alignment</span><span><i>✦</i>Presence</span><span><i>✦</i>One breath at a time</span>
+        </>
+      ))}
+    </div>
+  </div>
 
-      <div class="grid-servicios" data-stagger>
+  {/* ============ MANIFIESTO ============ */}
+  <section class="pad manifiesto">
+    <div class="container">
+      <span class="kicker center rv">{manifiesto.etiqueta}</span>
+      <h2 class="rv">{manifiesto.titular}</h2>
+      <p class="manifiesto-firma rv">{manifiesto.firma}</p>
+    </div>
+  </section>
+
+  {/* ============ EXPERIENCIAS ============ */}
+  <section class="pad" id="experiencias" style="padding-top:0">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker rv">{servicios.etiqueta}</span>
+          <h2 class="rv">{servicios.titulo}</h2>
+        </div>
+        <p class="rv">{servicios.texto}</p>
+      </div>
+      <div class="exp-grid" data-stagger>
         {servicios.items.map((s) => (
-          <article class="card servicio-card reveal-up">
-            <img src={s.imagen} alt={s.titulo} loading="lazy" />
-            <i data-lucide={s.icono}></i>
-            <h3>{s.titulo}</h3>
-            <p>{s.texto}</p>
-            <a class="servicio-link" href={`https://wa.me/573000000000?text=Hola%20Aira,%20quiero%20información%20sobre%20${encodeURIComponent(s.titulo)}`} target="_blank" rel="noopener">Consultar por WhatsApp <span>↗</span></a>
+          <article class="exp-card rv">
+            <div class="exp-media">
+              <img src={s.imagen} alt={s.imagenAlt} loading="lazy" />
+              <span class="exp-num">{s.numero}</span>
+            </div>
+            <div class="exp-body">
+              <h3>{s.titulo}</h3>
+              <p>{s.texto}</p>
+              <ul class="exp-list">
+                {s.incluye.map((f) => <li>{f}</li>)}
+              </ul>
+              <a class="exp-wa" href={wa(s.whatsappMsg)} target="_blank" rel="noopener">
+                Consultar por WhatsApp
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  {/* ==================== NOSOTROS ==================== */}
-  <section class="pad" id="nosotros" style="background:var(--bg-soft)">
-    <div class="container nosotros-grid">
-      <div class="reveal-left">
-        <span class="eyebrow"><span class="dot"></span> {nosotros.encabezado}</span>
-        <h2 class="section-title">{nosotros.titulo}</h2>
-        <p class="lead">{nosotros.texto}</p>
-      </div>
-      <img class="reveal-right" src={nosotros.imagen} alt={nosotros.imagenAlt} loading="lazy" />
-    </div>
-  </section>
-
-  {/* ==================== CIFRAS ==================== */}
-  <section class="pad cifras">
-    <div class="container grid-cifras" data-stagger>
-      {cifras.items.map((c) => (
-        <div class="reveal-pop">
-          <i data-lucide={c.icono}></i>
-          <div class="cifra-num" data-contar={c.numero} data-sufijo={c.sufijo}>0</div>
-          <p>{c.texto}</p>
+  {/* ============ ESTUDIO ============ */}
+  <section class="estudio pad" id="estudio">
+    <div class="container estudio-grid">
+      <div class="estudio-media rv">
+        <img src={estudio.imagen} alt={estudio.imagenAlt} loading="lazy" />
+        <div class="estudio-badge">
+          <strong>Aira House</strong>
+          <span>Luz cálida · materiales nobles</span>
         </div>
-      ))}
-    </div>
-  </section>
-
-  {/* ==================== TESTIMONIOS ==================== */}
-  {testimonios.items.length > 0 && (
-    <section class="pad" style="background:var(--bg-soft)">
-      <div class="container">
-        <span class="eyebrow reveal"><span class="dot"></span> {testimonios.encabezado}</span>
-        <h2 class="section-title reveal">{testimonios.titulo}</h2>
-
-        <div class="grid-testimonios" data-stagger>
-          {testimonios.items.map((t) => (
-            <figure class="card reveal-up">
-              <blockquote>{t.texto}</blockquote>
-              <figcaption>
-                <img src={t.foto} alt={t.nombre} loading="lazy" />
-                <div>
-                  <strong>{t.nombre}</strong>
-                  <span>{t.cargo}</span>
-                </div>
-              </figcaption>
-            </figure>
+      </div>
+      <div>
+        <span class="kicker rv">{estudio.etiqueta}</span>
+        <h2 class="rv">{estudio.titulo}</h2>
+        <p class="estudio-lead rv">{estudio.texto}</p>
+        <div class="ritual-list" data-stagger>
+          {estudio.rituales.map((r, i) => (
+            <div class="ritual rv">
+              <b>0{i + 1}</b>
+              <div>
+                <h3>{r.titulo}</h3>
+                <p>{r.texto}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
-    </section>
-  )}
+    </div>
+  </section>
 
-  {/* ==================== PREGUNTAS FRECUENTES ==================== */}
-  <section class="pad" id="faq">
+  {/* ============ ESPACIOS ============ */}
+  <section class="pad" id="espacios">
     <div class="container">
-      <span class="eyebrow reveal"><span class="dot"></span> {faq.encabezado}</span>
-      <h2 class="section-title reveal">{faq.titulo}</h2>
+      <div class="sec-head">
+        <div>
+          <span class="kicker rv">{espacios.etiqueta}</span>
+          <h2 class="rv">{espacios.titulo}</h2>
+        </div>
+        <p class="rv">{espacios.texto}</p>
+      </div>
+      <div class="gal-grid" data-stagger>
+        {espacios.items.map((g) => (
+          <figure class="gal-item rv">
+            <img src={g.imagen} alt={g.alt} loading="lazy" />
+            <figcaption class="gal-cap">
+              <strong>{g.titulo}</strong>
+              <span class="gal-medida">{g.medida}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <div class="lista-faq" data-stagger>
+  {/* ============ PASOS ============ */}
+  <section class="pad" id="empezar" style="padding-top:0">
+    <div class="container">
+      <span class="kicker rv">{pasos.etiqueta}</span>
+      <h2 class="rv" style="font-size:clamp(2.2rem,4.6vw,3.8rem);margin-bottom:26px">{pasos.titulo}</h2>
+      <div class="pasos-grid" data-stagger>
+        {pasos.items.map((p) => (
+          <div class="paso rv">
+            <b>{p.numero}</b>
+            <h3>{p.titulo}</h3>
+            <p>{p.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ============ FAQ ============ */}
+  <section class="pad" id="faq" style="padding-top:0">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:44px">
+        <span class="kicker center rv">{faq.etiqueta}</span>
+        <h2 class="rv" style="font-size:clamp(2.2rem,4.6vw,3.8rem)">{faq.titulo}</h2>
+      </div>
+      <div class="faq-wrap" data-stagger>
         {faq.items.map((f) => (
-          <details class="card reveal-up">
-            <summary>{f.pregunta}</summary>
+          <details class="faq-item rv">
+            <summary>{f.pregunta}<span class="faq-plus">+</span></summary>
             <p>{f.respuesta}</p>
           </details>
         ))}
@@ -123,42 +189,20 @@ const { portada, servicios, nosotros, cifras, testimonios, faq, contacto, meta }
     </div>
   </section>
 
-  {/* ==================== CONTACTO ==================== */}
-  <section class="pad" id="contacto" style="background:var(--bg-soft)">
-    <div class="container">
-      <span class="eyebrow reveal"><span class="dot"></span> {contacto.encabezado}</span>
-      <h2 class="section-title reveal">{contacto.titulo}</h2>
-      <p class="lead reveal">{contacto.texto}</p>
-      <a class="btn btn-primary reveal" href="https://wa.me/573000000000?text=Hola%20Aira,%20quiero%20conocer%20los%20horarios" target="_blank" rel="noopener">Escribir por WhatsApp ↗</a>
-      {/* El formulario se agrega según el módulo elegido — ver features/forms-whatsapp/ */}
+  {/* ============ CTA FINAL ============ */}
+  <section id="contacto">
+    <div class="cta-panel">
+      <img class="cta-bg" src="/img/estudio-luz.jpg" alt="Interior del estudio Aira" loading="lazy" />
+      <div class="cta-inner">
+        <span class="kicker center rv" style="color:var(--gold)">{contacto.etiqueta}</span>
+        <h2 class="rv">{contacto.titulo}</h2>
+        <p class="rv">{contacto.texto}</p>
+        <a class="btn-pill btn-wa rv" href={wa(contacto.whatsappMsg)} target="_blank" rel="noopener">
+          Escribir por WhatsApp
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <p class="cta-nota rv">{contacto.nota}</p>
+      </div>
     </div>
   </section>
 </Layout>
-
-<script is:inline>
-  /* Contadores: animan de 0 al número final cuando entran en pantalla. */
-  (function () {
-    const menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const nums = Array.from(document.querySelectorAll("[data-contar]"));
-    if (!nums.length) return;
-
-    const pintar = (el) => {
-      const destino = parseInt(el.dataset.contar, 10) || 0;
-      const sufijo = el.dataset.sufijo || "";
-      if (menosMovimiento) { el.textContent = destino + sufijo; return; }
-      const inicio = performance.now();
-      const paso = (ahora) => {
-        const t = Math.min((ahora - inicio) / 1400, 1);
-        el.textContent = Math.round(destino * (1 - Math.pow(1 - t, 3))) + sufijo;
-        if (t < 1) requestAnimationFrame(paso);
-      };
-      requestAnimationFrame(paso);
-    };
-
-    if (!("IntersectionObserver" in window)) { nums.forEach(pintar); return; }
-    const io = new IntersectionObserver((es) => {
-      es.forEach((e) => { if (e.isIntersecting) { pintar(e.target); io.unobserve(e.target); } });
-    }, { threshold: 0.5 });
-    nums.forEach((n) => io.observe(n));
-  })();
-</script>
