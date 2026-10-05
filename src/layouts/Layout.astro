@@ -32,6 +32,7 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
   </head>
 
   <body>
+    <div class="scroll-progreso" id="scrollProgreso" aria-hidden="true"></div>
     <div class="anuncio">
       <span class="anuncio-punto"></span>
       {sitio.anuncio}
@@ -41,7 +42,8 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
     <header class="nav" id="nav">
       <div class="container nav-inner">
         <a href="/" class="nav-logo" aria-label="Aira inicio">
-          <img src="/brand/logo.png" alt="aira — the pilates house" />
+          <img class="nav-logo-ivory" src="/brand/logo-claro.png" alt="aira — the pilates house" />
+          <img class="nav-logo-espresso" src="/brand/logo.png" alt="" aria-hidden="true" />
         </a>
         <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
           {sitio.menu.map((item) => (
@@ -91,10 +93,33 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
         var nav = document.getElementById("nav");
         var btn = document.getElementById("botonMenu");
         var links = document.getElementById("navLinks");
+        var progreso = document.getElementById("scrollProgreso");
+        var heroImg = document.querySelector(".hero-bg");
+        var heroEl = document.querySelector(".hero");
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var ticking = false;
         var onScroll = function () {
           nav.classList.toggle("scrolled", window.scrollY > 24);
+          if (progreso) {
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+            progreso.style.width = pct + "%";
+          }
+          if (heroImg && heroEl && !reduceMotion) {
+            var h = heroEl.offsetHeight;
+            if (window.scrollY < h) {
+              var shift = Math.min(window.scrollY * 0.18, 70);
+              heroImg.style.transform = "translateY(" + shift + "px)";
+            }
+          }
+          ticking = false;
         };
-        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("scroll", function () {
+          if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+          }
+        }, { passive: true });
         onScroll();
         if (btn && links) {
           btn.addEventListener("click", function () {

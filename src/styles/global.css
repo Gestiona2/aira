@@ -35,13 +35,15 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 110px; overflow-x: hidden; }
+/* overflow-x:clip (no :hidden) a propósito: hidden convierte a html/body en
+   contenedores de scroll y eso rompe position:sticky en el nav descendiente */
+html { scroll-behavior: smooth; scroll-padding-top: 110px; overflow-x: clip; }
 body {
   font-family: "AiraBody", "Helvetica Neue", Arial, sans-serif;
   background: var(--ivory);
   color: var(--ink);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, .display {
@@ -68,6 +70,9 @@ img { max-width: 100%; display: block; }
 section { position: relative; }
 .pad { padding: clamp(72px, 9vw, 132px) 0; }
 
+/* ---------- barra de progreso ---------- */
+.scroll-progreso { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--sand); z-index: 70; transition: width .1s linear; }
+
 /* ---------- anuncio ---------- */
 .anuncio {
   position: relative; z-index: 60;
@@ -82,20 +87,34 @@ section { position: relative; }
 /* ---------- nav ---------- */
 .nav { position: sticky; top: 0; z-index: 50; transition: background .35s ease, box-shadow .35s ease, border-color .35s ease; border-bottom: 1px solid transparent; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 18px; padding-bottom: 18px; }
-.nav-logo img { height: 44px; width: auto; }
+.nav-logo { position: relative; display: inline-flex; flex: 0 0 auto; }
+.nav-logo img { height: 44px; width: auto; transition: height .35s ease, opacity .3s ease; }
+.nav-logo-espresso { position: absolute; inset: 0; opacity: 0; }
+/* Logo claro (marfil) por defecto: el header flota sobre la foto del hero y
+   necesita la versión clara para contraste (manual de marca 1.5). Al hacer
+   scroll el nav gana fondo sólido claro y se cruza a la versión espresso. */
+.nav.scrolled .nav-logo-ivory { opacity: 0; }
+.nav.scrolled .nav-logo-espresso { opacity: 1; }
 .nav-links { display: flex; gap: 30px; }
-.nav-links a { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text); opacity: .72; position: relative; padding: 6px 0; transition: opacity .25s; }
-.nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--espresso); transition: width .3s ease; }
+.nav-links a { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ivory); opacity: .85; position: relative; padding: 6px 0; transition: opacity .25s, color .35s; text-shadow: 0 1px 10px rgba(0,0,0,.25); }
+.nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: currentColor; transition: width .3s ease; }
 .nav-links a:hover { opacity: 1; }
 .nav-links a:hover::after { width: 100%; }
+.nav.scrolled .nav-links a { color: var(--text); opacity: .72; text-shadow: none; }
+.nav.scrolled .nav-links a:hover { opacity: 1; }
 .nav-actions { display: flex; align-items: center; gap: 12px; }
-.nav-burger { display: none; flex-direction: column; gap: 6px; background: none; border: 0; cursor: pointer; padding: 8px; }
-.nav-burger span { display: block; width: 26px; height: 2px; background: var(--espresso); transition: transform .3s; }
+.nav-burger { display: none; flex-direction: column; gap: 6px; background: none; border: 0; cursor: pointer; padding: 8px; flex: 0 0 auto; }
+.nav-burger span { display: block; width: 26px; height: 2px; background: var(--ivory); box-shadow: 0 1px 6px rgba(0,0,0,.3); transition: transform .3s, background .35s; }
+.nav.scrolled .nav-burger span { background: var(--espresso); box-shadow: none; }
 .nav-burger.x span:first-child { transform: translateY(8px) rotate(45deg); }
 .nav-burger.x span:last-child { transform: translateY(0) rotate(-45deg); }
 .nav.scrolled { background: rgba(246, 245, 227, 0.86); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom-color: var(--line-soft); }
 .nav.scrolled .nav-inner { padding-top: 12px; padding-bottom: 12px; }
 .nav.scrolled .nav-logo img { height: 36px; }
+/* El menú móvil abierto es un panel claro propio: logo/links siempre en
+   tono espresso ahí, sin importar si el nav sigue "sin scroll". */
+.nav-links.open { background: var(--ivory); }
+.nav-links.open a { color: var(--text); text-shadow: none; opacity: 1; }
 
 /* ---------- botones ---------- */
 .btn-pill {
@@ -117,13 +136,15 @@ section { position: relative; }
 
 /* ---------- hero ---------- */
 .hero { min-height: 100svh; display: flex; align-items: flex-end; color: var(--ivory); overflow: clip; margin-top: -67px; padding-top: 67px; }
-.hero-bg { position: absolute; inset: 0; }
+.hero-bg { position: absolute; inset: 0; will-change: transform; transition: transform .1s linear; }
 .hero-bg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); animation: heroZoom 9s ease-out forwards; }
 @keyframes heroZoom { to { transform: scale(1); } }
 .hero-bg::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(76,68,59,.42) 0%, rgba(76,68,59,.12) 34%, rgba(76,68,59,.28) 62%, rgba(76,68,59,.78) 100%),
+    /* franja superior: protege logo/menú del nav sobre cualquier foto */
+    linear-gradient(180deg, rgba(30,27,23,.58) 0%, rgba(30,27,23,0) 22%),
+    linear-gradient(180deg, rgba(76,68,59,.42) 0%, rgba(76,68,59,.12) 34%, rgba(76,68,59,.28) 62%, rgba(76,68,59,.8) 100%),
     linear-gradient(100deg, rgba(76,68,59,.62) 0%, rgba(76,68,59,.18) 55%, rgba(76,68,59,0) 80%);
 }
 .hero-inner { position: relative; z-index: 2; padding-top: 120px; padding-bottom: 0; width: 100%; }
@@ -278,6 +299,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .nav-links a { font-size: 1.4rem; font-family: "AiraDisplay", Georgia, serif; text-transform: none; letter-spacing: 0; opacity: 1; padding: 10px 0; }
   .nav-burger { display: flex; z-index: 56; position: relative; }
   .nav-actions .btn-pill { padding: 13px 20px; font-size: .68rem; }
+  /* degradado más plano y oscuro: el recorte vertical del hero necesita
+     contraste parejo en todo el ancho, no el diagonal pensado para escritorio */
+  .hero-bg::after {
+    background:
+      linear-gradient(180deg, rgba(30,27,23,.62) 0%, rgba(30,27,23,.18) 24%, rgba(30,27,23,.34) 56%, rgba(30,27,23,.84) 100%);
+  }
   .hero { min-height: 100svh; }
   .hero-foot { flex-direction: column; }
   .hero-stat { border-right: 0; border-top: 1px solid rgba(246,245,227,.22); padding: 18px 0; }
@@ -291,4 +318,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .paso { border-right: 0; border-bottom: 1px solid var(--line); margin-right: 0; padding: 26px 0; }
   .wa-flotante span { display: none; }
   .wa-flotante { padding: 16px; }
+}
+@media (max-width: 480px) {
+  /* el anuncio completo no cabe en una línea en celulares angostos: se
+     reduce tamaño y interlineado en vez de dejarlo crecer a 4 líneas */
+  .anuncio { font-size: .62rem; letter-spacing: .07em; padding: 9px 14px; line-height: 1.5; gap: 8px; }
+  .anuncio-punto { display: none; }
+  /* nav: logo y botón más compactos para que nunca se amontonen */
+  .nav-inner { gap: 10px; }
+  .nav-logo img { height: 30px; }
+  .nav.scrolled .nav-logo img { height: 28px; }
+  .nav-actions { gap: 8px; }
+  .nav-actions .btn-pill { padding: 10px 14px; font-size: .6rem; letter-spacing: .1em; gap: 6px; }
+  .nav-burger { padding: 6px; }
 }
