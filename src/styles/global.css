@@ -28,7 +28,7 @@
   --card: #fffdf6;
   --text: #60554a;
   --ink: #4c443b;         /* derivado del espresso, solo para texto largo */
-  --muted: #8a7c6c;       /* derivado cálido del taupe para texto secundario */
+  --muted: #6b5d4f;       /* 5.78:1 sobre marfil (AA). Derivado cálido de la marca */       /* derivado cálido del taupe para texto secundario */
   --line: rgba(96, 85, 74, 0.22);
   --line-soft: rgba(96, 85, 74, 0.12);
   --wa: #22a06b;          /* verde funcional WhatsApp, no es marca */
@@ -82,7 +82,7 @@ section { position: relative; }
   padding: 11px 16px; text-align: center;
 }
 .anuncio-punto { width: 6px; height: 6px; border-radius: 50%; background: var(--sand); box-shadow: 0 0 0 4px rgba(209,198,151,.35); }
-.anuncio a { color: var(--sand); border-bottom: 1px solid var(--sand); padding-bottom: 1px; white-space: nowrap; }
+.anuncio a { color: var(--ivory); border-bottom: 1px solid var(--sand); padding-bottom: 1px; white-space: nowrap; }
 
 /* ---------- nav ---------- */
 .nav { position: sticky; top: 0; z-index: 50; transition: background .35s ease, box-shadow .35s ease, border-color .35s ease; border-bottom: 1px solid transparent; }
@@ -148,7 +148,7 @@ section { position: relative; }
     linear-gradient(100deg, rgba(76,68,59,.62) 0%, rgba(76,68,59,.18) 55%, rgba(76,68,59,0) 80%);
 }
 .hero-inner { position: relative; z-index: 2; padding-top: 120px; padding-bottom: 0; width: 100%; }
-.hero-etiqueta { display: inline-flex; align-items: center; gap: 12px; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--sand); margin-bottom: 26px; }
+.hero-etiqueta { display: inline-flex; align-items: center; gap: 12px; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--sand); margin-bottom: 26px; text-shadow: 0 1px 12px rgba(0,0,0,.45); }
 .hero-etiqueta::before { content: ""; width: 44px; height: 1px; background: var(--sand); }
 .hero h1 { font-size: clamp(3.2rem, 8.4vw, 7.6rem); max-width: 12ch; text-wrap: balance; }
 .hero h1 em { font-style: italic; color: var(--sand); }
@@ -167,7 +167,7 @@ section { position: relative; }
 @keyframes scrollHint { to { top: 110%; } }
 
 /* ---------- marquee ---------- */
-.marquee { background: var(--espresso); color: var(--sand); overflow: hidden; border-top: 1px solid rgba(246,245,227,.14); }
+.marquee { background: var(--espresso); color: var(--ivory); overflow: hidden; border-top: 1px solid rgba(246,245,227,.14); }
 .marquee-track { display: flex; gap: 0; width: max-content; animation: marquee 26s linear infinite; padding: 16px 0; }
 .marquee-track span { font-size: .78rem; letter-spacing: .34em; text-transform: uppercase; padding: 0 28px; white-space: nowrap; }
 .marquee-track span i { color: var(--sand); font-style: normal; margin-right: 28px; }
@@ -210,14 +210,14 @@ section { position: relative; }
 .estudio-badge { position: absolute; right: -14px; bottom: 40px; background: var(--ivory); color: var(--espresso); border-radius: 18px; padding: 18px 22px; max-width: 230px; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
 .estudio-badge strong { font-family: "AiraDisplay", Georgia, serif; font-size: 1.35rem; font-weight: 300; display: block; }
 .estudio-badge span { font-size: .78rem; color: var(--muted); }
-.estudio .kicker { color: var(--sand); }
+.estudio .kicker { color: var(--ivory); } /* sand daba 4.23:1 en texto pequeño */
 .estudio h2 { font-size: clamp(2.4rem, 4.6vw, 4rem); margin-bottom: 18px; }
-.estudio > .container p, .estudio-lead { color: rgba(246,245,227,.75); max-width: 46ch; }
+.estudio > .container p, .estudio-lead { color: rgba(246,245,227,.88); max-width: 46ch; }
 .ritual-list { margin-top: 34px; border-top: 1px solid rgba(246,245,227,.16); }
 .ritual { display: grid; grid-template-columns: 64px 1fr; gap: 18px; padding: 22px 0; border-bottom: 1px solid rgba(246,245,227,.16); }
-.ritual b { font-family: "AiraDisplay", Georgia, serif; font-weight: 300; color: var(--sand); font-size: 1.3rem; }
+.ritual b { font-family: "AiraDisplay", Georgia, serif; font-weight: 300; color: var(--ivory); font-size: 1.3rem; }
 .ritual h3 { font-size: 1.4rem; margin-bottom: 4px; }
-.ritual p { font-size: .9rem; color: rgba(246,245,227,.68); }
+.ritual p { font-size: .9rem; color: rgba(246,245,227,.85); }
 
 /* ---------- espacios ---------- */
 .gal-grid { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 22px; align-items: end; }
@@ -256,13 +256,13 @@ section { position: relative; }
 .cta-inner h2 { font-size: clamp(2.6rem, 6vw, 4.8rem); margin-bottom: 18px; text-wrap: balance; }
 .cta-inner h2 em { font-style: italic; color: var(--sand); }
 .cta-inner p { color: rgba(246,245,227,.82); margin-bottom: 34px; }
-.cta-nota { margin-top: 20px; font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; color: rgba(246,245,227,.6); }
+.cta-nota { margin-top: 20px; font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; color: rgba(246,245,227,.85); text-shadow: 0 1px 10px rgba(0,0,0,.4); }
 
 /* ---------- pie ---------- */
 .pie { background: var(--espresso); color: var(--ivory); margin-top: clamp(72px, 9vw, 132px); padding: 70px 0 30px; }
 .pie-top { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding-bottom: 44px; border-bottom: 1px solid rgba(246,245,227,.14); }
 .pie-logo { height: 74px; width: auto; }
-.pie-tag { color: rgba(246,245,227,.65); letter-spacing: .06em; }
+.pie-tag { color: rgba(246,245,227,.85); letter-spacing: .06em; }
 .pie-bottom { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding-top: 24px; font-size: .8rem; color: rgba(246,245,227,.55); }
 
 /* ---------- flotante wa ---------- */
@@ -348,7 +348,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 
 .script-kicker {
   font-family: "AiraDisplay", Georgia, serif; font-style: italic;
-  font-size: clamp(1.3rem, 2.6vw, 1.8rem); color: var(--taupe);
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem); color: var(--espresso); /* taupe daba 2.3:1, ilegible */
   margin-bottom: 14px; letter-spacing: 0.02em;
 }
 .script-kicker.center { text-align: center; }
@@ -399,13 +399,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .menu-ritual li:first-child { border-top: 1px dotted var(--taupe); }
 .menu-ritual-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
 .menu-ritual-top strong { font-family: "AiraDisplay", Georgia, serif; font-weight: 300; font-size: 1.6rem; color: var(--espresso); }
-.menu-sello { flex: none; font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--taupe); border: 1px solid var(--taupe); border-radius: 999px; padding: 7px 14px; font-family: "AiraThin", Arial, sans-serif; }
+.menu-sello { flex: none; font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--espresso); border: 1px solid var(--taupe); border-radius: 999px; padding: 7px 14px; font-family: "AiraThin", Arial, sans-serif; }
 .menu-ritual p { color: var(--muted); font-size: .92rem; margin: 8px 0 4px; max-width: 52ch; }
 .menu-ritual .leer-mas { justify-content: flex-start; margin-top: 10px; }
 
 .cita-banda { background: var(--espresso); color: var(--ivory); text-align: center; padding: clamp(72px, 9vw, 120px) 0; border-radius: clamp(24px, 4vw, 48px); margin: 0 clamp(10px, 2.5vw, 32px); }
 .cita-banda blockquote { font-family: "AiraDisplay", Georgia, serif; font-style: italic; font-weight: 300; font-size: clamp(1.7rem, 3.8vw, 3rem); max-width: 24ch; margin: 0 auto; line-height: 1.25; }
-.cita-firma { margin-top: 24px; font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--sand); font-family: "AiraThin", Arial, sans-serif; }
+.cita-firma { margin-top: 24px; font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ivory); font-family: "AiraThin", Arial, sans-serif; }
 
 .reserva-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: start; }
 .reserva-grid h2 { font-size: clamp(2.4rem, 5vw, 4rem); }
@@ -430,7 +430,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .pie-col-titulo { font-size: .7rem; letter-spacing: .28em; text-transform: uppercase; color: var(--sand); margin-bottom: 6px; font-family: "AiraThin", Arial, sans-serif; }
 .pie-grid nav a { color: rgba(246,245,227,.75); font-size: .92rem; }
 .pie-grid nav a:hover { color: var(--ivory); }
-.pie-grid p { color: rgba(246,245,227,.65); font-size: .9rem; }
+.pie-grid p { color: rgba(246,245,227,.85); font-size: .9rem; }
 .pie-wa { display: inline-block; margin-top: 14px; color: var(--sand); border-bottom: 1px solid var(--sand); padding-bottom: 2px; }
 
 @media (max-width: 1024px) {
