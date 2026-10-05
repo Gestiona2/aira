@@ -122,5 +122,32 @@
     "texto": "Respuesta humana, sin bots. Cuéntanos qué buscas y te proponemos el mejor punto de partida.",
     "whatsappMsg": "Hola Aira, quiero agendar mi primera clase",
     "nota": "Atendemos por WhatsApp en horario del estudio"
+  },
+  "rituales": {
+    "etiqueta": "Menú de la casa",
+    "titulo": "Rituales Aira",
+    "texto": "Sin precios ni letra pequeña en esta etapa: cada ritual se cotiza y agenda por WhatsApp según tu momento.",
+    "items": [
+      { "nombre": "Primera visita Aira", "descripcion": "Diagnóstico de movimiento + clase introductoria acompañada.", "sello": "Para empezar", "whatsappMsg": "Hola Aira, quiero agendar mi primera visita" },
+      { "nombre": "Pilates Reformer", "descripcion": "Práctica en máquina, grupos pequeños y técnica precisa.", "sello": "Grupos pequeños", "whatsappMsg": "Hola Aira, quiero información sobre Pilates Reformer" },
+      { "nombre": "Clase personalizada 1:1", "descripcion": "Plan a tu medida, horario flexible y atención total.", "sello": "A tu medida", "whatsappMsg": "Hola Aira, me interesa una clase personalizada" },
+      { "nombre": "Ritual de calma", "descripcion": "Respiración, movilidad y cierre consciente para salir distinta.", "sello": "Cuerpo y mente", "whatsappMsg": "Hola Aira, quiero vivir el Ritual Aira" }
+    ]
+  },
+  "reserva": {
+    "etiqueta": "Reserva",
+    "titulo": "Aparta tu momento",
+    "texto": "Completa tus datos y se abre WhatsApp con tu mensaje listo. Sin cuentas, sin apps.",
+    "nombreLabel": "Tu nombre",
+    "nombrePh": "¿Cómo te llamas?",
+    "expLabel": "Experiencia",
+    "msgLabel": "Cuéntanos (opcional)",
+    "msgPh": "Nivel, objetivo, lesiones…",
+    "boton": "Enviar por WhatsApp",
+    "nota": "Te respondemos en horario del estudio"
+  },
+  "cita": {
+    "texto": "Creemos en la simplicidad que habla, en la experiencia sensorial que trasciende lo físico.",
+    "firma": "Manifiesto Aira · AM Studio 2024"
   }
 }

@@ -1,104 +1,129 @@
 ---
 /**
- * Aira Studio Pilates — página informativa luxury.
- * REGLA: sin texto escrito aquí; todo sale de src/datos/inicio.json y sitio.json.
+ * RAMA EXPERIMENTO exp/inspiracion-spa — Aira en clave spa-template clásico.
+ * REGLA: sin texto escrito aquí; todo sale de src/datos/.
+ * Sin precios, duraciones, horarios ni testimonios: nada inventado.
  */
 import Layout from "../layouts/Layout.astro";
 import datos from "../datos/inicio.json";
 import sitio from "../datos/sitio.json";
 
-const { portada, manifiesto, servicios, estudio, espacios, pasos, faq, contacto, meta } = datos;
+const { portada, manifiesto, servicios, rituales, reserva, cita, estudio, espacios, pasos, faq, contacto, meta } = datos;
 const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURIComponent(msg)}`;
 ---
 
-<Layout titulo={meta.titulo} descripcion={meta.descripcion} activa="inicio">
-  {/* ============ HERO ============ */}
-  <header class="hero">
-    <div class="hero-bg">
-      <img src={portada.imagen} alt={portada.imagenAlt} loading="eager" fetchpriority="high" />
-    </div>
-    <aside class="hero-sello rv">
-      <strong>{portada.selloTitulo}</strong>
-      <p>{portada.selloTexto}</p>
-    </aside>
-    <span class="hero-scroll" aria-hidden="true"></span>
-    <div class="container hero-inner">
-      <span class="hero-etiqueta rv">{portada.etiqueta}</span>
-      <h1 class="rv">
-        {portada.tituloLinea1} <em>{portada.tituloCursiva}</em><br />
-        {portada.tituloLinea2}
-      </h1>
-      <p class="hero-sub rv">{portada.texto}</p>
-      <div class="hero-ctas rv">
-        <a class="btn-pill btn-ivory" href={wa(contacto.whatsappMsg)} target="_blank" rel="noopener">
-          Agenda tu primera clase
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-        </a>
-        <a class="btn-pill btn-line-ivory" href="#experiencias">Conocer experiencias</a>
+<Layout titulo={meta.titulo} descripcion={meta.descripcion} activa="inicio" solido={true}>
+  {/* ============ HERO DIVIDIDO (clave spa) ============ */}
+  <header class="hero-spa">
+    <div class="container hero-spa-grid">
+      <div>
+        <p class="script-kicker rv">Bienvenida a Aira</p>
+        <h1 class="rv">
+          {portada.tituloLinea1} <em>{portada.tituloCursiva}</em><br />
+          {portada.tituloLinea2}
+        </h1>
+        <p class="hero-spa-sub rv">{portada.texto}</p>
+        <div class="hero-ctas rv">
+          <a class="btn-pill btn-espresso" href={wa(contacto.whatsappMsg)} target="_blank" rel="noopener">
+            Agenda tu primera clase
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="btn-pill btn-line" href="#rituales">Ver rituales</a>
+        </div>
+        <dl class="hero-spa-stats rv" data-stagger>
+          {portada.stats.map((s) => (
+            <div>
+              <dt>{s.valor}</dt>
+              <dd>{s.texto}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
-      <div class="hero-foot rv" data-stagger>
-        {portada.stats.map((s) => (
-          <div class="hero-stat">
-            <strong>{s.valor}</strong>
-            <span>{s.texto}</span>
-          </div>
-        ))}
+      <div class="hero-spa-media rv">
+        <div class="arco">
+          <img src={portada.imagen} alt={portada.imagenAlt} loading="eager" fetchpriority="high" />
+        </div>
+        <div class="hero-spa-sello">
+          <strong>{portada.selloTitulo}</strong>
+          <p>{portada.selloTexto}</p>
+        </div>
       </div>
     </div>
   </header>
 
-  {/* ============ MARQUEE ============ */}
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      {Array.from({ length: 2 }).map(() => (
-        <>
-          <span><i>✦</i>Reformer</span><span><i>✦</i>Breath</span><span><i>✦</i>Alignment</span><span><i>✦</i>Presence</span><span><i>✦</i>One breath at a time</span>
-        </>
-      ))}
-    </div>
-  </div>
+  <div class="ornamento" aria-hidden="true"><span></span><i>✦</i><span></span></div>
 
   {/* ============ MANIFIESTO ============ */}
   <section class="pad manifiesto">
     <div class="container">
-      <span class="kicker center rv">{manifiesto.etiqueta}</span>
+      <p class="script-kicker center rv">{manifiesto.etiqueta}</p>
       <h2 class="rv">{manifiesto.titular}</h2>
       <p class="manifiesto-texto rv">{manifiesto.texto}</p>
       <p class="manifiesto-firma rv">{manifiesto.firma}</p>
     </div>
   </section>
 
-  {/* ============ EXPERIENCIAS ============ */}
-  <section class="pad" id="experiencias" style="padding-top:0">
+  {/* ============ EXPERIENCIAS (tarjetas centradas clave spa) ============ */}
+  <section class="pad banda" id="experiencias">
     <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker rv">{servicios.etiqueta}</span>
-          <h2 class="rv">{servicios.titulo}</h2>
-        </div>
-        <p class="rv">{servicios.texto}</p>
+      <div class="sec-centro">
+        <p class="script-kicker center rv">{servicios.etiqueta}</p>
+        <h2 class="rv">{servicios.titulo}</h2>
+        <p class="sec-sub rv">{servicios.texto}</p>
       </div>
-      <div class="exp-grid" data-stagger>
+      <div class="exp-spa-grid" data-stagger>
         {servicios.items.map((s) => (
-          <article class="exp-card rv">
-            <div class="exp-media">
+          <article class="exp-spa-card rv">
+            <div class="exp-spa-media">
               <img src={s.imagen} alt={s.imagenAlt} loading="lazy" />
-              <span class="exp-num">{s.numero}</span>
             </div>
-            <div class="exp-body">
-              <h3>{s.titulo}</h3>
-              <p>{s.texto}</p>
-              <ul class="exp-list">
-                {s.incluye.map((f) => <li>{f}</li>)}
-              </ul>
-              <a class="exp-wa" href={wa(s.whatsappMsg)} target="_blank" rel="noopener">
-                Consultar por WhatsApp
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              </a>
-            </div>
+            <h3>{s.titulo}</h3>
+            <p>{s.texto}</p>
+            <ul class="exp-spa-list">
+              {s.incluye.map((f) => <li>{f}</li>)}
+            </ul>
+            <a class="leer-mas" href={wa(s.whatsappMsg)} target="_blank" rel="noopener">
+              Consultar <span>›</span>
+            </a>
           </article>
         ))}
       </div>
+    </div>
+  </section>
+
+  {/* ============ MENÚ DE RITUALES (patrón spa, sin precios) ============ */}
+  <section class="pad" id="rituales">
+    <div class="container ritual-grid">
+      <div>
+        <p class="script-kicker rv">{rituales.etiqueta}</p>
+        <h2 class="rv">{rituales.titulo}</h2>
+        <p class="sec-sub rv" style="margin:18px 0 0">{rituales.texto}</p>
+        <a class="btn-pill btn-espresso rv" style="margin-top:30px" href={wa(contacto.whatsappMsg)} target="_blank" rel="noopener">
+          Preguntar por WhatsApp
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+      <ul class="menu-ritual" data-stagger>
+        {rituales.items.map((r) => (
+          <li class="rv">
+            <div class="menu-ritual-top">
+              <strong>{r.nombre}</strong>
+              <span class="menu-sello">{r.sello}</span>
+            </div>
+            <p>{r.descripcion}</p>
+            <a class="leer-mas" href={wa(r.whatsappMsg)} target="_blank" rel="noopener">Reservar <span>›</span></a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ============ CITA DE MARCA (verbatim manual) ============ */}
+  <section class="cita-banda">
+    <div class="container">
+      <p class="script-kicker center rv" style="color:var(--sand)">Manifiesto</p>
+      <blockquote class="rv">“{cita.texto}”</blockquote>
+      <p class="cita-firma rv">{cita.firma}</p>
     </div>
   </section>
 
@@ -113,7 +138,7 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
         </div>
       </div>
       <div>
-        <span class="kicker rv">{estudio.etiqueta}</span>
+        <p class="script-kicker rv" style="color:var(--sand)">{estudio.etiqueta}</p>
         <h2 class="rv">{estudio.titulo}</h2>
         <p class="estudio-lead rv">{estudio.texto}</p>
         <div class="ritual-list" data-stagger>
@@ -131,15 +156,47 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
     </div>
   </section>
 
+  {/* ============ RESERVA (formulario → WhatsApp) ============ */}
+  <section class="pad banda" id="reserva">
+    <div class="container reserva-grid">
+      <div>
+        <p class="script-kicker rv">{reserva.etiqueta}</p>
+        <h2 class="rv">{reserva.titulo}</h2>
+        <p class="sec-sub rv" style="margin:18px 0 30px">{reserva.texto}</p>
+        <div class="pasos-mini" data-stagger>
+          {pasos.items.map((p) => (
+            <div class="rv"><b>{p.numero}</b><div><strong>{p.titulo}</strong><p>{p.texto}</p></div></div>
+          ))}
+        </div>
+      </div>
+      <form class="form-card rv" id="formReserva">
+        <label>{reserva.nombreLabel}
+          <input type="text" id="fNombre" placeholder={reserva.nombrePh} autocomplete="name" required />
+        </label>
+        <label>{reserva.expLabel}
+          <select id="fExp">
+            {servicios.items.map((s) => <option value={s.titulo}>{s.titulo}</option>)}
+          </select>
+        </label>
+        <label>{reserva.msgLabel}
+          <textarea id="fMsg" rows="3" placeholder={reserva.msgPh}></textarea>
+        </label>
+        <button class="btn-pill btn-wa" type="submit">
+          {reserva.boton}
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <p class="form-nota">{reserva.nota}</p>
+      </form>
+    </div>
+  </section>
+
   {/* ============ ESPACIOS ============ */}
   <section class="pad" id="espacios">
     <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker rv">{espacios.etiqueta}</span>
-          <h2 class="rv">{espacios.titulo}</h2>
-        </div>
-        <p class="rv">{espacios.texto}</p>
+      <div class="sec-centro">
+        <p class="script-kicker center rv">{espacios.etiqueta}</p>
+        <h2 class="rv">{espacios.titulo}</h2>
+        <p class="sec-sub rv">{espacios.texto}</p>
       </div>
       <div class="gal-grid" data-stagger>
         {espacios.items.map((g) => (
@@ -155,28 +212,11 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
     </div>
   </section>
 
-  {/* ============ PASOS ============ */}
-  <section class="pad" id="empezar" style="padding-top:0">
-    <div class="container">
-      <span class="kicker rv">{pasos.etiqueta}</span>
-      <h2 class="rv" style="font-size:clamp(2.2rem,4.6vw,3.8rem);margin-bottom:26px">{pasos.titulo}</h2>
-      <div class="pasos-grid" data-stagger>
-        {pasos.items.map((p) => (
-          <div class="paso rv">
-            <b>{p.numero}</b>
-            <h3>{p.titulo}</h3>
-            <p>{p.texto}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   {/* ============ FAQ ============ */}
   <section class="pad" id="faq" style="padding-top:0">
     <div class="container">
-      <div style="text-align:center;margin-bottom:44px">
-        <span class="kicker center rv">{faq.etiqueta}</span>
+      <div class="sec-centro" style="margin-bottom:44px">
+        <p class="script-kicker center rv">{faq.etiqueta}</p>
         <h2 class="rv" style="font-size:clamp(2.2rem,4.6vw,3.8rem)">{faq.titulo}</h2>
       </div>
       <div class="faq-wrap" data-stagger>
@@ -195,7 +235,7 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
     <div class="cta-panel">
       <img class="cta-bg" src="/img/estudio-luz.jpg" alt="Interior del estudio Aira" loading="lazy" />
       <div class="cta-inner">
-        <span class="kicker center rv" style="color:var(--gold)">{contacto.etiqueta}</span>
+        <p class="script-kicker center rv" style="color:var(--sand)">{contacto.etiqueta}</p>
         <h2 class="rv">{contacto.titulo}</h2>
         <p class="rv">{contacto.texto}</p>
         <a class="btn-pill btn-wa rv" href={wa(contacto.whatsappMsg)} target="_blank" rel="noopener">
@@ -207,3 +247,19 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
     </div>
   </section>
 </Layout>
+
+<script is:inline define:vars={{ waBase: `https://wa.me/${sitio.whatsapp}` }}>
+  (function () {
+    var form = document.getElementById("formReserva");
+    if (!form) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var nombre = (document.getElementById("fNombre").value || "").trim();
+      var exp = document.getElementById("fExp").value;
+      var msg = (document.getElementById("fMsg").value || "").trim();
+      if (!nombre) { document.getElementById("fNombre").focus(); return; }
+      var texto = "Hola Aira, soy " + nombre + " y quiero reservar: " + exp + (msg ? ". " + msg : "");
+      window.open(waBase + "?text=" + encodeURIComponent(texto), "_blank", "noopener");
+    });
+  })();
+</script>

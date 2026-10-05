@@ -11,8 +11,9 @@ interface Props {
   titulo: string;
   descripcion?: string;
   activa?: string;
+  solido?: boolean;
 }
-const { titulo, descripcion = sitio.descripcion, activa = "" } = Astro.props;
+const { titulo, descripcion = sitio.descripcion, activa = "", solido = false } = Astro.props;
 const waBase = `https://wa.me/${sitio.whatsapp}`;
 ---
 
@@ -39,7 +40,7 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
       <a href={sitio.ctaPrincipal.href} target="_blank" rel="noopener">Agendar →</a>
     </div>
 
-    <header class="nav" id="nav">
+    <header class={solido ? "nav nav-solido scrolled" : "nav"} id="nav">
       <div class="container nav-inner">
         <a href="/" class="nav-logo" aria-label="Aira inicio">
           <img class="nav-logo-ivory" src="/brand/logo-claro.png" alt="aira — the pilates house" />
@@ -68,17 +69,28 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
 
     <footer class="pie">
       <div class="container">
-        <div class="pie-top">
-          <img class="pie-logo" src="/brand/logo-claro.png" alt="aira" loading="lazy" />
-          <p class="pie-tag">The Pilates House · One breath at a time.</p>
-          <a class="btn-pill btn-ivory" href={sitio.ctaPrincipal.href} target="_blank" rel="noopener">
-            Agenda por WhatsApp
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </a>
+        <div class="pie-grid">
+          <div>
+            <img class="pie-logo" src="/brand/logo-claro.png" alt="aira" loading="lazy" />
+            <p class="pie-tag">The Pilates House · One breath at a time.</p>
+            <a class="btn-pill btn-ivory" href={sitio.ctaPrincipal.href} target="_blank" rel="noopener">
+              Agenda por WhatsApp
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </div>
+          <nav aria-label="Explora">
+            <p class="pie-col-titulo">Explora</p>
+            {sitio.menu.map((item) => <a href={item.href}>{item.texto}</a>)}
+          </nav>
+          <div>
+            <p class="pie-col-titulo">Visítanos</p>
+            <p>{sitio.direccion}</p>
+            <p>{sitio.horario}</p>
+            <a class="pie-wa" href={waBase} target="_blank" rel="noopener">Escríbenos por WhatsApp →</a>
+          </div>
         </div>
         <div class="pie-bottom">
           <p>© {new Date().getFullYear()} {sitio.razonSocial}. Todos los derechos reservados.</p>
-          <p class="pie-lugar">{sitio.direccion} · {sitio.horario}</p>
         </div>
       </div>
     </footer>

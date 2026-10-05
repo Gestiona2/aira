@@ -10,9 +10,9 @@
   "anuncio": "Primera visita con acompañamiento personal — escríbenos por WhatsApp",
   "menu": [
     { "id": "experiencias", "texto": "Experiencias", "href": "#experiencias" },
+    { "id": "rituales", "texto": "Rituales", "href": "#rituales" },
     { "id": "estudio", "texto": "Estudio", "href": "#estudio" },
-    { "id": "espacios", "texto": "Espacios", "href": "#espacios" },
-    { "id": "faq", "texto": "Preguntas", "href": "#faq" }
+    { "id": "reserva", "texto": "Reserva", "href": "#reserva" }
   ],
   "ctaPrincipal": {
     "texto": "Agenda tu clase",
