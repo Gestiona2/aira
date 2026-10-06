@@ -7,6 +7,7 @@
 import Layout from "../layouts/Layout.astro";
 import datos from "../datos/inicio.json";
 import sitio from "../datos/sitio.json";
+import { ruta } from "../lib/ruta";
 
 const { portada, manifiesto, servicios, rituales, reserva, cita, estudio, espacios, pasos, faq, contacto, meta } = datos;
 const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURIComponent(msg)}`;
@@ -41,7 +42,7 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
       </div>
       <div class="hero-spa-media rv">
         <div class="arco">
-          <img src={portada.imagen} alt={portada.imagenAlt} loading="eager" fetchpriority="high" />
+          <img src={ruta(portada.imagen)} alt={portada.imagenAlt} loading="eager" fetchpriority="high" />
         </div>
         <div class="hero-spa-sello">
           <strong>{portada.selloTitulo}</strong>
@@ -75,7 +76,7 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
         {servicios.items.map((s) => (
           <article class="exp-spa-card rv">
             <div class="exp-spa-media">
-              <img src={s.imagen} alt={s.imagenAlt} loading="lazy" />
+              <img src={ruta(s.imagen)} alt={s.imagenAlt} loading="lazy" />
             </div>
             <h3>{s.titulo}</h3>
             <p>{s.texto}</p>
@@ -131,7 +132,7 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
   <section class="estudio pad" id="estudio">
     <div class="container estudio-grid">
       <div class="estudio-media rv">
-        <img src={estudio.imagen} alt={estudio.imagenAlt} loading="lazy" />
+        <img src={ruta(estudio.imagen)} alt={estudio.imagenAlt} loading="lazy" />
         <div class="estudio-badge">
           <strong>Aira House</strong>
           <span>Luz cálida · materiales nobles</span>
@@ -201,7 +202,7 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
       <div class="gal-grid" data-stagger>
         {espacios.items.map((g) => (
           <figure class="gal-item rv">
-            <img src={g.imagen} alt={g.alt} loading="lazy" />
+            <img src={ruta(g.imagen)} alt={g.alt} loading="lazy" />
             <figcaption class="gal-cap">
               <strong>{g.titulo}</strong>
               <span class="gal-medida">{g.medida}</span>
@@ -233,7 +234,7 @@ const wa = (msg: string) => `https://wa.me/${sitio.whatsapp}?text=${encodeURICom
   {/* ============ CTA FINAL ============ */}
   <section id="contacto">
     <div class="cta-panel">
-      <img class="cta-bg" src="/img/estudio-luz.jpg" alt="Interior del estudio Aira" loading="lazy" />
+      <img class="cta-bg" src={ruta("/img/estudio-luz.jpg")} alt="Interior del estudio Aira" loading="lazy" />
       <div class="cta-inner">
         <p class="script-kicker center rv" style="color:var(--ivory)">{contacto.etiqueta}</p>
         <h2 class="rv">{contacto.titulo}</h2>

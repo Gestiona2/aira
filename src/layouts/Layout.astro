@@ -6,6 +6,7 @@
  */
 import "../styles/global.css";
 import sitio from "../datos/sitio.json";
+import { ruta } from "../lib/ruta";
 
 interface Props {
   titulo: string;
@@ -24,7 +25,7 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titulo}</title>
     <meta name="description" content={descripcion} />
-    <link rel="icon" href="/brand/favicon.png" />
+    <link rel="icon" href={ruta("/brand/favicon.png")} />
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:type" content="website" />
@@ -42,9 +43,9 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
 
     <header class={solido ? "nav nav-solido scrolled" : "nav"} id="nav">
       <div class="container nav-inner">
-        <a href="/" class="nav-logo" aria-label="Aira inicio">
-          <img class="nav-logo-ivory" src="/brand/logo-claro.png" alt="aira — the pilates house" />
-          <img class="nav-logo-espresso" src="/brand/logo.png" alt="" aria-hidden="true" />
+        <a href={ruta("/")} class="nav-logo" aria-label="Aira inicio">
+          <img class="nav-logo-ivory" src={ruta("/brand/logo-claro.png")} alt="aira — the pilates house" />
+          <img class="nav-logo-espresso" src={ruta("/brand/logo.png")} alt="" aria-hidden="true" />
         </a>
         <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
           {sitio.menu.map((item) => (
@@ -71,7 +72,7 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
       <div class="container">
         <div class="pie-grid">
           <div>
-            <img class="pie-logo" src="/brand/logo-claro.png" alt="aira" loading="lazy" />
+            <img class="pie-logo" src={ruta("/brand/logo-claro.png")} alt="aira" loading="lazy" />
             <p class="pie-tag">The Pilates House · One breath at a time.</p>
             <a class="btn-pill btn-ivory" href={sitio.ctaPrincipal.href} target="_blank" rel="noopener">
               Agenda por WhatsApp
@@ -165,7 +166,7 @@ const waBase = `https://wa.me/${sitio.whatsapp}`;
               io.unobserve(en.target);
             }
           });
-        }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+        }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
         els.forEach(function (el) { io.observe(el); });
       })();
     </script>

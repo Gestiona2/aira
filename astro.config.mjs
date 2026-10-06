@@ -1,11 +1,16 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
-// output por defecto queda en "static" — no agregar adapter salvo que el
-// proyecto necesite SSR real (formularios y automatizaciones van por
-// proxy PHP o GitHub Actions, no requieren servidor Astro en producción).
+// Demo: el sitio vive en una subcarpeta de demos.emp2web.com.
+// Cuando AIRA apruebe y tenga su dominio, poner site: "https://www.aira.com"
+// y base: "/" — los enlaces no hay que tocarlos, los resuelve src/lib/ruta.ts.
+//
+// output queda en "static" — no agregar adapter salvo que el proyecto necesite
+// SSR real (formularios y automatizaciones van por proxy o GitHub Actions).
 export default defineConfig({
-  site: "https://CAMBIAR-POR-EL-DOMINIO.com",
+  site: "https://demos.emp2web.com",
+  base: "/aira",
+  devToolbar: { enabled: false },
   vite: {
     plugins: [tailwindcss()],
   },
